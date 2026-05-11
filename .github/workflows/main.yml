@@ -1,0 +1,11 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Add this step to open the SSH tunnel
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        # If you want it to trigger ONLY if something fails:
+        # if: ${{ failure() }}
