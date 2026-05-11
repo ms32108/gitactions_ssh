@@ -1,11 +1,18 @@
+name: Manual SSH Debugging
+
+# This is the "trigger" you were missing
+on: 
+  workflow_dispatch:
+
 jobs:
-  build:
+  ssh-debug:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # Add this step to open the SSH tunnel
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        # If you want it to trigger ONLY if something fails:
-        # if: ${{ failure() }}
+        with:
+          # This ensures the session stays open even if a step fails
+          limit-access-to-registered-users: false
