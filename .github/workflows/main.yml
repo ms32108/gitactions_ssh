@@ -1,6 +1,4 @@
 name: Manual SSH Debugging
-
-# This is the "trigger" you were missing
 on: 
   workflow_dispatch:
 
@@ -14,5 +12,6 @@ jobs:
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
         with:
-          # This ensures the session stays open even if a step fails
-          limit-access-to-registered-users: false
+          # This limits access to ONLY you (the person who clicked 'Run')
+          # It requires you to have your SSH public key uploaded to your GitHub profile
+          limit-access-to-actor: true
